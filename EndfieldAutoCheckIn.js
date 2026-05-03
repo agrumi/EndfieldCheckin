@@ -240,13 +240,14 @@ function sendTelegramMessage(title, description, footer) {
   };
 
   try {
-    UrlFetchApp.fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-      options,
-    );
-  } catch (e) {
-    Logger.log("Failed to send Telegram message: " + e.toString());
-  }
+  const response = UrlFetchApp.fetch(
+    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+    options,
+  );
+  Logger.log("Telegram response: " + response.getContentText());
+} catch (e) {
+  Logger.log("Failed to send Telegram message: " + e.toString());
+}
 }
 
 // --- HELPERS ---
